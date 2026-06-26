@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="resultat"></p>
+
+  <script>
+    console.log("Hello World") 
+    function getComputerChoice() {
+    const choice = ["rock", "paper", "scissors"];
+    return choice[Math.floor(Math.random() *3)];
+    }
+
+    
+
+    function getHumanChoice() {
+      return prompt("Rock, Paper, Scissors")
+    }
+  
+    
+    let humanScore = 0;
+    let computerScore = 0
+
+    function playRound(humanChoice, computerChoice) {
+      humanChoice= humanChoice.toLowerCase();
+      console.log("Vous : " + humanChoice + " | Computer : " + computerChoice);
+
+      if ((humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")) {
+      console.log("You win! " + humanChoice + " beats " + computerChoice)
+    humanScore++ 
+    }
+
+      else if ((humanChoice === "rock" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "rock")) {
+     console.log("You loss! " + computerChoice + " beats " + humanChoice)
+    computerScore++
+    }
+    else {
+     console.log("You tied! no one took advantage");
+    }}
+    function playGame() {
+      while (humanScore < 3 && computerScore < 3) {
+      playRound(getHumanChoice(), getComputerChoice());
+    } 
+      
+    }
+    playGame();
+
+    if (humanScore > computerScore) {
+    document.getElementById("resultat").textContent = "You win! " + humanScore + " - " + computerScore;
+    } else if (humanScore < computerScore) {
+      document.getElementById("resultat").textContent = "You lose! " + humanScore + " - " + computerScore;
+    }
+    else {
+      document.getElementById("resultat").textContent = "You tied! " + humanScore + " - " + computerScore;
+    }
+
+  </script>
+
+</body>
+</html>
